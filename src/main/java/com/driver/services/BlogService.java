@@ -18,13 +18,11 @@ public class BlogService {
     UserRepository userRepository1;
 
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
-
-        User user = userRepository1.findById(userId).get();
-
         Blog blog = new Blog();
         blog.setContent(content);
         blog.setTitle(title);
 
+        User user = userRepository1.findById(userId).get();
         blog.setUser(user);
         user.getBlogList().add(blog);
         userRepository1.save(user);

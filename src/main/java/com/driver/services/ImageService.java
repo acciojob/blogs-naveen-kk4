@@ -50,7 +50,6 @@ public class ImageService {
          String str = image.getDimensions();
          String arr1[] = str.split("X");
          String arr2[] = screenDimensions.split("X");
-         if(arr2[0].compareTo(arr1[0])<0 || arr2[1].compareTo(arr1[1])<0)return 0;
         return (Integer.valueOf(arr2[0])/Integer.valueOf(arr1[0])) * (Integer.valueOf(arr2[1])/Integer.valueOf(arr1[1])) ;
 
     }

@@ -1,5 +1,6 @@
 package com.driver.controller;
 
+import com.driver.models.Image;
 import com.driver.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,9 +13,9 @@ public class ImageController {
        @Autowired
     ImageService imageService;
     @PostMapping("/{blogId}/add-image")
-    public ResponseEntity<String> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
-          imageService.addImage(blogId,description,dimensions);
-        return new ResponseEntity<>("Added image successfully", HttpStatus.OK);
+    public ResponseEntity<Image> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
+          Image image = imageService.addImage(blogId,description,dimensions);
+        return new ResponseEntity<>(image, HttpStatus.OK);
     }
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")

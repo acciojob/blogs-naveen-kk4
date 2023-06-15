@@ -19,6 +19,14 @@ public class User {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Blog> blogList = new ArrayList<>();
+     public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
+    }
+
+    public List<Blog> getBlogList() {
+        return blogList;
+    }
+
 
     public User() {}
 
@@ -54,13 +62,7 @@ public class User {
         return password;
     }
 
-    public void setBlogList(List<Blog> blogList) {
-        this.blogList = blogList;
-    }
 
-    public List<Blog> getBlogList() {
-        return blogList;
-    }
 
     public String getFirstName() {
         return firstName;

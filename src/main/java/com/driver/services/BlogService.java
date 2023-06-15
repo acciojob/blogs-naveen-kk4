@@ -18,20 +18,15 @@ public class BlogService {
     UserRepository userRepository1;
 
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
-        Optional<User> userOptional = userRepository1.findById(userId);
+
 
         Blog blog = new Blog();
         blog.setContent(content);
         blog.setTitle(title);
-        if(userOptional.isEmpty()){
-            blogRepository1.save(blog);
-            return blog;
-        }
-        User user = userOptional.get();
+
+        User user = userRepository1.findById(userId).get();
 
         blog.setUser(user);
-
-        blogRepository1.save(blog);
         user.getBlogList().add(blog);
         userRepository1.save(user);
         return blog;

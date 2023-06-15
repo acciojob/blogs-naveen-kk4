@@ -22,7 +22,9 @@ public class BlogService {
         blog.setContent(content);
         blog.setTitle(title);
 
-        User user = userRepository1.findById(userId).get();
+        Optional<User> userOptional = userRepository1.findById(userId);
+        if(userOptional.isEmpty())return blog;
+        User user = userOptional.get();
         blog.setUser(user);
         user.getBlogList().add(blog);
         userRepository1.save(user);

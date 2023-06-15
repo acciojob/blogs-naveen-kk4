@@ -13,9 +13,9 @@ public class ImageController {
        @Autowired
     ImageService imageService;
     @PostMapping("/{blogId}/add-image")
-    public ResponseEntity<Image> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
+    public ResponseEntity<String> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
           Image image = imageService.addImage(blogId,description,dimensions);
-        return new ResponseEntity<>(image, HttpStatus.OK);
+        return new ResponseEntity<>("Added image successfully", HttpStatus.OK);
     }
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")

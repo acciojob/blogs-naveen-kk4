@@ -44,7 +44,14 @@ public class ImageService {
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-        return 1;
+        Optional<Image> imageOptional = imageRepository2.findById(id);
+        if(imageOptional.isEmpty())return 0;
+        Image image = imageOptional.get();
+         String str = image.getDimensions();
+         String arr1[] = str.split("X");
+         String arr2[] = screenDimensions.split("X");
+         if(arr2[0].compareTo(arr1[0])<0 || arr2[1].compareTo(arr1[1])<0)return 0;
+        return (Integer.valueOf(arr2[0])/Integer.valueOf(arr1[0])) * (Integer.valueOf(arr2[1])/Integer.valueOf(arr1[1])) ;
 
     }
 }

@@ -16,7 +16,7 @@ public class Blog {
     private int id;
     private String title;
     String content;
-    @CreationTimestamp
+
     private Date pubDate;
     @ManyToOne
     @JoinColumn
